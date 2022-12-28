@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "656193301968",
+    "project_id": "social-me-f5bec",
+    "storage_bucket": "social-me-f5bec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:656193301968:android:23146b27a12641b5d3ddd5",
+        "android_client_info": {
+          "package_name": "com.example.social_me"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "656193301968-1e6fh8d3erpd5hb0er9jlibjjg59vtnj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.social_me",
+            "certificate_hash": "b4852d436793b1425e4ffa102425ed1e309f361c"
+          }
+        },
+        {
+          "client_id": "656193301968-7d3b7738tf03occjek01vsfshao3fac8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD61oETDn-AyQXiQc8GfQsEfX2-uk_uAkM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "656193301968-7d3b7738tf03occjek01vsfshao3fac8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
