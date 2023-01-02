@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:social_me/services/auth.dart';
 
 class Home extends StatelessWidget {
@@ -8,19 +7,42 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthService _authService= AuthService();
+    final AuthService authService= AuthService();
     return Scaffold(
+      backgroundColor: Colors.black12,
       appBar: AppBar(
           title: const Text("Home"),
           backgroundColor: Colors.green,
-          actions: <Widget>[
-            TextButton.icon(
-              onPressed:() async {_authService.signOut();},
-              icon: const Icon(Icons.person),
-              label: const Text("SignOut"),
-            )
-          ]
+
     ),
+      floatingActionButton:FloatingActionButton(
+          onPressed:() {
+            Navigator.pushNamed(context,'/add');
+            },
+        child:const Icon(Icons.add)),
+        drawer: Drawer(
+          child: ListView(
+            children:<Widget>[
+              const DrawerHeader(decoration:
+              BoxDecoration(color: Colors.cyan), child: Text("Drawer Header")
+              ),
+              ListTile(
+                title: const Text("Profile"),
+                onTap: (){
+                  Navigator.pushNamed(context, '/profile');
+                },
+              ),
+
+
+              ListTile(
+                title: const Text("LogOut"),
+                onTap: () async {
+                  authService.signOut();
+                },
+              )
+            ],
+          ),
+        )
     );
   }
 }

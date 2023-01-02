@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_me/models/user.dart';
-import 'package:social_me/screens/auth/Signup.dart';
+import '';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:social_me/services/auth.dart';
 import 'package:social_me/screens/wrapper.dart';
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
-        return Text("Loading");
+        return const Text("Loading");
       },
     );
   }

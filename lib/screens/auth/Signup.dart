@@ -23,33 +23,62 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black12,
      appBar:AppBar(
       backgroundColor: Colors.green,
       elevation: 8,
       title: Text("Signup"),
      ),
      body: Container(
-      padding: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+      padding: EdgeInsets.symmetric(vertical: 50,horizontal: 20),
       child: Form(
         child: Column(
           children: [
             TextFormField(
+              decoration: InputDecoration(
+                  icon: Icon(Icons.email_outlined,color: Colors.white),
+                label: Text('Enter Your Email'),
+                  labelStyle: TextStyle(
+                      color: Colors.white
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(width: 1, color: Colors.white),
+                      borderRadius: BorderRadius.circular(30)
+                  )
+              ),
               onChanged: (val) => setState(() {
               email = val;
             }),
           ),
+            SizedBox(height: 10),
             TextFormField(
+              decoration: InputDecoration(
+                icon: Icon(Icons.password_outlined,color: Colors.white),
+                  label: Text('Enter Your Password (6 Digits only)'),
+                labelStyle: TextStyle(
+                  color: Colors.white
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1, color: Colors.white),
+                  borderRadius: BorderRadius.circular(30)
+                )
+              ),
               onChanged: (val) => setState(() {
                 password = val;
               }),
             ),
             ElevatedButton(
-
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.green
+                ),
               onPressed: () async => {
                 _authService.signUp(email, password),
               }, 
               child: Text("SignUp")),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.green
+              ),
               onPressed: () async => {
                 _authService.signIn(email, password),
               }, 

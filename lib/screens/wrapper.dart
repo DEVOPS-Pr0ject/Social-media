@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:social_me/models/user.dart';
 import 'package:social_me/screens/auth/Signup.dart';
 import 'package:social_me/screens/main/home.dart';
+import 'package:social_me/screens/main/posts/add.dart';
+import 'package:social_me/screens/main/profile/edit.dart';
+import 'package:social_me/screens/main/profile/profile.dart';
 
 class Wrapper extends StatelessWidget {
   const Wrapper({super.key});
@@ -19,6 +22,14 @@ class Wrapper extends StatelessWidget {
       return const Signup();
     }
     //show main system routes
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {'/' : (context) => Home(),
+        '/add' : (context) => Add(),
+        '/profile' : (context) => Profile(),
+        '/edit' : (context) => Edit(),
+      }
+    );
     return const Home();
   }
 }
