@@ -5,6 +5,7 @@ import 'package:social_me/models/user.dart';
 import 'package:social_me/screens/main/posts/list.dart';
 import 'package:social_me/services/posts.dart';
 import 'package:social_me/services/user.dart';
+import 'dart:core';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -14,16 +15,20 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  final PostService _postService = PostService();
-  final UserService _userService = UserService();
+   final PostService _postService = PostService();
+   final UserService _userService = UserService();
   @override
   Widget build(BuildContext context) {
+    final Object? uid =ModalRoute.of(context)?.settings.arguments;
     return MultiProvider(
       providers: [
         StreamProvider.value(value:
-        _postService.getPostsByUser(FirebaseAuth.instance.currentUser?.uid), initialData: null),
+        _userService.isFollowing(FirebaseAuth.instance.currentUser?.uid, uid),
+            initialData: null),
         StreamProvider.value(value:
-        _userService.getUserInfo(FirebaseAuth.instance.currentUser?.uid),
+        _postService.getPostsByUser(uid), initialData: null),
+        StreamProvider.value(value:
+        _userService.getUserInfo(uid),
           initialData: null)
       ],
         child: Scaffold(
@@ -36,39 +41,48 @@ class _ProfileState extends State<Profile> {
                     expandedHeight: 150,
                     flexibleSpace:  FlexibleSpaceBar(
                       background: Image.network(Provider
-                          .of<UserModel?>(context)?.bannerImageUrl ?? 'https://htmlcolorcodes.com/assets/images/colors/grass-green-color-solid-background-1920x1080.png' ,
-                      fit: BoxFit.cover,
+                          .of<UserModel?>(context)?.bannerImageUrl ?? '',
+                        fit: BoxFit.cover,
+
                       )),
                    ),
                    SliverList(delegate: SliverChildListDelegate(
                      [
                        Container(
-                         padding: const EdgeInsets.symmetric(vertical: 40,horizontal: 20),
+                         padding: const EdgeInsets.symmetric(vertical: 40,horizontal: 10),
                          child: Column(children: <Widget>[
                            Row(
-
-                           children: [
-                             Image.network(Provider
-                                 .of<UserModel?>(context)?.profileImageUrl ??
-                                 'https://htmlcolorcodes.com/assets/images/colors/grass-green-color-solid-background-1920x1080.png',
-                               height: 70,
-                               width: 65,
-                               fit: BoxFit.cover,
-                             ),
-                             TextButton(
-
-                                 onPressed:()
-                             {
-                               Navigator.pushNamed(context, '/edit');
-                             },
-                                 child: Container(
-                                   padding: const EdgeInsets.symmetric(horizontal: 80),
-                                   child: const Text('Edit profile'),
-                                 ))
-                           ],
+                             children: [Provider.of<UserModel?>(context)?.
+                               profileImageUrl != '' ? CircleAvatar(
+                               radius: 20,
+                               backgroundImage: NetworkImage(Provider.of<UserModel>(context).profileImageUrl)
+                             ): const Icon(Icons.person,size: 50),
+                               if(FirebaseAuth.instance.currentUser?.uid == uid)
+                               TextButton(
+                                   onPressed: () {
+                                     Navigator.pushNamed(context, '/edit');
+                                   },
+                                   child: Container(
+                                     padding: const EdgeInsets.symmetric(horizontal: 50),
+                                       child: const Text("Edit Profile")))
+                               else if(FirebaseAuth.instance.currentUser?.uid != uid && !Provider.of<bool>(context))
+                               TextButton(
+                                   onPressed: () {
+                                      _userService.followUser(uid);
+                                   },
+                                   child: Container(
+                                       padding: const EdgeInsets.symmetric(horizontal: 50),
+                                       child: const Text("Follow")))
+                              else if(FirebaseAuth.instance.currentUser?.uid != uid && Provider.of<bool>(context))
+                              TextButton(
+                              onPressed: () {
+                                _userService.unfollowUser(uid);
+                                },
+                              child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 50),
+                              child: const Text("UnFollow")))
+                             ],
                          ),
-
-
                            Align(
                              alignment: Alignment.centerLeft,
                              child:Container(

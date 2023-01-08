@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class UserModel{
+class UserModel {
   final String id;
   final String bannerImageUrl;
   final String profileImageUrl;

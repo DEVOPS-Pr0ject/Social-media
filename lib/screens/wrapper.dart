@@ -30,6 +30,6 @@ class Wrapper extends StatelessWidget {
         '/edit' : (context) => Edit(),
       }
     );
-    return const Home();
+    return Home();
   }
 }

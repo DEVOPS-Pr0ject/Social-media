@@ -33,7 +33,7 @@ class _EditState extends State<Edit> {
       appBar: AppBar(
         actions: <Widget>[
           TextButton(onPressed: () async{
-            _userService.updateProfile(bannerImage??File(''), profileImage??File(''), name);
+            _userService.updateProfile(bannerImage??File('path'), profileImage??File(''), name);
             Navigator.pop(context);
           }, child:const Text(
             'Save',
@@ -48,10 +48,10 @@ class _EditState extends State<Edit> {
               children: [
                 TextButton(onPressed: () => getImage(0),
                   child: profileImage== null?
-                    const Icon(Icons.camera_alt) : Image.file(profileImage??File(''),height:100),),
+                    const Icon(Icons.person_pin) : Image.file(profileImage??File('  '),height:100),),
                 TextButton(onPressed: () => getImage(1),
                   child: bannerImage== null?
-                  const Icon(Icons.camera_alt_rounded) : Image.file(bannerImage??File(''),height:100),),
+                  const Icon(Icons.camera_alt_rounded) : Image.file(bannerImage??File(' '),height:100),),
                 TextFormField(
                   decoration: const InputDecoration(
                       label: Text('Enter Your Name')

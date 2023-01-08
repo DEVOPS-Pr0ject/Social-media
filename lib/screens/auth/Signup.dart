@@ -35,6 +35,7 @@ class _SignupState extends State<Signup> {
         child: Column(
           children: [
             TextFormField(
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                   icon: Icon(Icons.email_outlined,color: Colors.white),
                 label: Text('Enter Your Email'),
@@ -52,6 +53,7 @@ class _SignupState extends State<Signup> {
           ),
             SizedBox(height: 10),
             TextFormField(
+              style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 icon: Icon(Icons.password_outlined,color: Colors.white),
                   label: Text('Enter Your Password (6 Digits only)'),
