@@ -19,7 +19,7 @@ class _ProfileState extends State<Profile> {
    final UserService _userService = UserService();
   @override
   Widget build(BuildContext context) {
-    final Object? uid =ModalRoute.of(context)?.settings.arguments;
+    final String? uid =ModalRoute.of(context)?.settings.arguments as String?;
     return MultiProvider(
       providers: [
         StreamProvider.value(value:
@@ -41,7 +41,7 @@ class _ProfileState extends State<Profile> {
                     expandedHeight: 150,
                     flexibleSpace:  FlexibleSpaceBar(
                       background: Image.network(Provider
-                          .of<UserModel?>(context)?.bannerImageUrl ?? '',
+                          .of<UserModel?>(context)?.bannerImageUrl ?? "https://i.pinimg.com/originals/41/8e/1a/418e1a67a6ff452f43a39a4d913dc540.jpg",
                         fit: BoxFit.cover,
 
                       )),

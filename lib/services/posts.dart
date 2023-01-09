@@ -23,6 +23,8 @@ class PostService {
       'timestamp': FieldValue.serverTimestamp(),
     });
   }
+
+
     Stream<List<PostModel>>getPostsByUser(uid){
       return FirebaseFirestore.instance.collection("posts")
           .where('creator' , isEqualTo: uid)

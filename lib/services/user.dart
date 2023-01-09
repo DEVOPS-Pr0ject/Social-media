@@ -102,8 +102,8 @@ class UserService{
         'users/profile/${FirebaseAuth.instance.currentUser?.uid}/profile');
     Map<String,Object> data = HashMap();
     if (name !='') data['name'] = name;
-    if(bannerImageUrl !='') data['bannerImageUrl'] = bannerImageUrl;
-    if(profileImageUrl !='') data['profileImageUrl'] = profileImageUrl;
+    if(bannerImageUrl !=' ') data['bannerImageUrl'] = bannerImageUrl;
+    if(profileImageUrl !=' ') data['profileImageUrl'] = profileImageUrl;
 
     await FirebaseFirestore.instance.collection('users')
         .doc(FirebaseAuth.instance.currentUser?.uid)
