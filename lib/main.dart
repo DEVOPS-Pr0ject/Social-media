@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_me/models/user.dart';
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Counter value=5 as Counter;
     return FutureBuilder(
       // Initialize FlutterFire:
       future: _initialization,
