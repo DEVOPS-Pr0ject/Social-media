@@ -51,6 +51,13 @@ class _HomeState extends State<Home> {
                     arguments:FirebaseAuth.instance.currentUser?.uid);
               },
             ),
+            ListTile(
+              title: const Text("Edit"),
+              onTap: (){
+                Navigator.pushNamed(context, '/edit',
+                    arguments:FirebaseAuth.instance.currentUser?.uid);
+              },
+            ),
 
             ListTile(
               title: const Text("LogOut"),

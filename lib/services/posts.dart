@@ -23,8 +23,26 @@ class PostService {
       'timestamp': FieldValue.serverTimestamp(),
     });
   }
+  Future likePost(PostModel post,bool current) async {
+    print(post.id);
+    if(current){
+      await FirebaseFirestore.instance.collection("posts")
+          .doc(post.id)
+          .collection("likes")
+          .doc(FirebaseAuth.instance.currentUser?.uid)
+          .delete();
+    }
+    if(!current){
+      await FirebaseFirestore.instance.collection("posts")
+          .doc(post.id)
+          .collection("likes")
+          .doc(FirebaseAuth.instance.currentUser?.uid)
+          .set({});
+    }
 
+  }
 
+    
     Stream<List<PostModel>>getPostsByUser(uid){
       return FirebaseFirestore.instance.collection("posts")
           .where('creator' , isEqualTo: uid)

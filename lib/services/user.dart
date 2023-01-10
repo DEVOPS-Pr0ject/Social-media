@@ -53,7 +53,7 @@ class UserService{
         .snapshots()
         .map(_userFromFirebaseSnapshot);
   }
-   Stream<bool> isFollowing(uid,otherId) {
+   Stream<bool?> isFollowing(uid,otherId) {
      return FirebaseFirestore.instance.collection("users")
          .doc(uid)
          .collection("following")
@@ -94,8 +94,8 @@ class UserService{
 
   Future<void> updateProfile(File bannerImage,File profileImage, String name)
   async{
-    String bannerImageUrl=' ';
-    String profileImageUrl=' ';
+    String? bannerImageUrl=' ';
+    String? profileImageUrl=' ';
     bannerImageUrl =  await _utilsService.uploadFiles(bannerImage,
         'users/profile/${FirebaseAuth.instance.currentUser?.uid}/banner');
     profileImageUrl =  await _utilsService.uploadFiles(profileImage,

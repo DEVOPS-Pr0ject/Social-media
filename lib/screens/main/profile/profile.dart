@@ -19,7 +19,7 @@ class _ProfileState extends State<Profile> {
    final UserService _userService = UserService();
   @override
   Widget build(BuildContext context) {
-    final String? uid =ModalRoute.of(context)?.settings.arguments as String?;
+    final String uid =ModalRoute.of(context)?.settings.arguments as String;
     return MultiProvider(
       providers: [
         StreamProvider.value(value:

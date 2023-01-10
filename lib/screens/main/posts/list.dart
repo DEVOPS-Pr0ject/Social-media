@@ -57,7 +57,12 @@ class _ListPostsState extends State<ListPosts> {
                             Text(post.text),
                             const SizedBox(height: 20),
                             Text(post.timestamp.toDate().toString()),
-                            const SizedBox(height: 20,),
+                            const SizedBox(height: 20),
+                            IconButton(onPressed: (){
+                              _postService.likePost(post, true);
+                            },
+                                icon: const
+                                Icon(Icons.favorite_border,color: Colors.green,size: 30,))
 
                           ],
 
